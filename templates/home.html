@@ -22,8 +22,9 @@
     </style>-->
 </head>
 <body>
+    {% include 'navbar.html' %}
     <style></style>
-    <h1 class="text-primary" >{companyname}'s Job Page</h1>
+    <h1 class="text-primary" >{{companyname}}'s Job Page</h1>
     <img src="/static/Ulas_website.png" class="img-fluid" alt="Ulas_website">
     
     <div class="border-bottom" style="margin-top: 10px;">
@@ -38,6 +39,8 @@
     {% endfor %}
     </div>
 
-    <p>I love him</p>
+    <div class="d-grid gap-2 col-2 mx-auto" style="margin-top: 10px; margin-bottom: 6px;;">
+        <a href="mailto:ulasayyilmaz@gmail.com?subject=Inquiry%20from%20Website" class="btn btn-primary" style="btn-color: blue" type="button">Contact Me</button>
+    </div>
 </body>
 </html>
