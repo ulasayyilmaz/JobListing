@@ -1,18 +1,16 @@
 from sqlalchemy import create_engine, text
-
-engine = create_engine("mysql+pymysql://qwo8eeovdjhknibb3xih:pscale_pw_wo20sU2pgV1TJtCTzrt9clBb4qCOtWoGKU0OaNJY527@eu-central.connect.psdb.cloud/ulascareers?charset=utf8mb4", 
+import os
+engine = create_engine(os.getenv('enginekey'), 
 connect_args={
     "ssl": {
         "ca": "/etc/ssl/cert.pem",
     }
 })
 
-with engine.connect() as conn:
-    result = conn.execute(text("select * from jobs"))
-    all_result = result.all()
-    print("type of result:" + str(type(result)))
-    print("type of all results:" + str(type(all_result)))
-    print("type of first elem in results:" + str(type(all_result[0])))
-    firstresult = all_result[0]
-    first_resultDict = firstresult._mapping
-    print(first_resultDict)
+def load_jobs_fromDB():
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from jobs"))
+        jobs = []
+        for row in result.all():
+            jobs.append(row._mapping)
+    return jobs

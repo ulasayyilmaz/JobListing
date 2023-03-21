@@ -1,6 +1,8 @@
 from flask import Flask, render_template, jsonify
+from database import load_jobs_fromDB
+from dotenv import load_dotenv
 
-JOBS = [
+'''JOBS = [
     {
         'id': "Accountant", 
         'salary': "$100,000",
@@ -15,14 +17,24 @@ JOBS = [
         'id': "Product Manager", 
         'salary': "$120,000",
         'location': "Mountain View"
-    }]
+    }]'''
 
+def configure():
+    load_dotenv()
 
 app = Flask(__name__)
 @app.route("/")
 def helloWorld():
-    return render_template('home.html', jobs = JOBS, companyname = 'Ulas')
+    jobs = load_jobs_fromDB()
+    return render_template('home.html', jobs = jobs, companyname = 'Ulas')
+
+
 
 @app.route("/api/jobs")
 def list_jobs():
-    return jsonify(JOBS)
+    jobs= load_jobs_fromDB
+    return jsonify(jobs)
+
+if __name__ == '__main__':
+    configure()
+    app.run(host='0.0.0.0', debug = True)
