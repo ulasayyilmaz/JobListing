@@ -36,7 +36,9 @@ def list_jobs():
 @app.route("jos/<id>")
 def look_job():
     job = load_job_from_DB()
-    return jsonify(job)
+    if not job:
+        return "Page Not Found", 404
+    return render_template('jobpage.html', job = job)
 
 if __name__ == '__main__':
     configure()
