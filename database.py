@@ -14,3 +14,12 @@ def load_jobs_fromDB():
         for row in result.all():
             jobs.append(row._mapping)
     return jobs
+
+def load_job_from_DB(id):
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from jobs where id = :val"), val = id)
+        row = result.all()
+        if len(row) == 0:
+            return None
+        else:
+            return row[0]._mapping

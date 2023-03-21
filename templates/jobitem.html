@@ -5,7 +5,7 @@
             <div><h4>Location: {{job['location']}}</h4></div>
         {% endif %}
         {% if 'salary' in job %}
-            <div><h4>Salary: {{job['salary']}}</h4></div>
+            <div><h4>Salary: {{job['currency']}} {{job['salary']}}</h4></div>
         {% endif %}
         {% if 'responsibilities' in job %}
             <div><h4>Responsibility: {{job['responsibilities']}}</h4></div>
