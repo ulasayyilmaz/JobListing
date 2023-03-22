@@ -1,8 +1,11 @@
 from sqlalchemy import create_engine, text
-#import os
-import creds
+import os
+from dotenv import load_dotenv
+#import creds
 
-engine = create_engine(creds.enginekey, 
+load_dotenv()
+
+engine = create_engine(os.getenv('enginekey'), 
 connect_args={
     "ssl": {
         "ca": "/etc/ssl/cert.pem",
