@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from database import load_jobs_fromDB, load_job_from_DB
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 '''JOBS = [
     {
@@ -19,8 +19,8 @@ from dotenv import load_dotenv
         'location': "Mountain View"
     }]'''
 
-def configure():
-    load_dotenv()
+#def configure():
+#    load_dotenv()
 
 app = Flask(__name__)
 @app.route("/")
@@ -33,7 +33,7 @@ def list_jobs():
     jobs= load_jobs_fromDB
     return jsonify(jobs)
 
-@app.route("jos/<id>")
+@app.route("/job/<id>")
 def look_job():
     job = load_job_from_DB()
     if not job:
@@ -41,5 +41,5 @@ def look_job():
     return render_template('jobpage.html', job = job)
 
 if __name__ == '__main__':
-    configure()
+    #configure()
     app.run(host='0.0.0.0', debug = True)

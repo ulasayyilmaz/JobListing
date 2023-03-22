@@ -3,3 +3,4 @@ gunicorn #whenever putting the web into production, require the gunicorn library
 sqlalchemy
 pymysql
 dotenv
+os
