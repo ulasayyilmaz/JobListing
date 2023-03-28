@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from database import load_jobs_fromDB, load_job_from_DB
 #from dotenv import load_dotenv
 
@@ -39,6 +39,12 @@ def look_job():
     if not job:
         return "Page Not Found", 404
     return render_template('jobpage.html', job = job)
+
+@app.route("job/<id>/apply", methods=['post'])
+def apply_to_job(id): #to get the information people filled on html, import request from flask
+    data = request.form # args when no method as post, form when wtih post if i don't want data encoded in url
+    #return jsonify(data)
+    return render_template('application_submitted.html', application = data)
 
 if __name__ == '__main__':
     #configure()
